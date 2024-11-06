@@ -1,0 +1,90 @@
+{
+  "name": "Zigbee2MQTT Multi-Instance N°3",
+  "version": "1.41.0-1",
+  "slug": "zigbee2mqtt_mi_3",
+  "description": "Use your ZigBee devices without the vendor's bridge or gateway",
+  "uart": true,
+  "udev": true,
+  "url": "https://github.com/lebretr/hassio-zigbee2mqtt_1/tree/master/zigbee2mqtt_mi_3",
+  "startup": "application",
+  "services": [
+    "mqtt:need"
+  ],
+  "arch": [
+    "aarch64",
+    "amd64",
+    "armhf",
+    "armv7",
+    "i386"
+  ],
+  "boot": "auto",
+  "init": false,
+  "ingress": true,
+  "timeout": 30,
+  "panel_icon": "mdi:zigbee",
+  "map": [
+    {
+      "type": "share",
+      "read_only": false
+    },
+    {
+      "type": "homeassistant_config",
+      "read_only": false,
+      "path": "/config"
+    },
+    {
+      "type": "addon_config",
+      "read_only": false,
+      "path": "/addon_config"
+    }
+  ],
+  "ports": {
+    "8485/tcp": "8488",
+    "8099/tcp": null
+  },
+  "ports_description": {
+    "8485/tcp": "Socat tcp-listen port",
+    "8099/tcp": "Frontend tcp-listen port"
+  },
+  "options": {
+    "data_path": "/config/zigbee2mqtt_mi_3",
+    "socat": {
+      "enabled": false,
+      "master": "pty,raw,echo=0,link=/tmp/ttyZ2M,mode=777",
+      "slave": "tcp-listen:8485,keepalive,nodelay,reuseaddr,keepidle=1,keepintvl=1,keepcnt=5",
+      "options": "-d -d",
+      "log": false
+    },
+    "mqtt": {
+      "base_topic": "zigbee2mqtt_mi_3"
+    },
+    "serial": {}
+  },
+  "schema": {
+    "data_path": "str",
+    "socat": {
+      "enabled": "bool?",
+      "master": "str?",
+      "slave": "str?",
+      "options": "str?",
+      "log": "bool?"
+    },
+    "mqtt": {
+      "server": "str?",
+      "ca": "str?",
+      "key": "str?",
+      "cert": "str?",
+      "user": "str?",
+      "password": "str?",
+      "base_topic": "str?"
+    },
+    "serial": {
+      "port": "str?",
+      "adapter": "match(zstack|deconz|zigate|ezsp|ember|zboss)?",
+      "baudrate": "int?",
+      "rtscts": "bool?"
+    },
+    "watchdog": "str?"
+  },
+  "image": "zigbee2mqtt/zigbee2mqtt-{arch}"
+}
