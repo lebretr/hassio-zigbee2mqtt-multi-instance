@@ -1,0 +1,67 @@
+
+name: CI_MI
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+  duplicate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: cleaning
+        run: |
+          for i in {1..5}
+          do
+            rm -r -f "zigbee2mqtt-""$i"
+            rm -r -f "zigbee2mqtt_""$i"
+          done
+      - name: update file
+        run: |
+          cp mi_ressources/README.md README.md
+          cp mi_ressources/repository.json repository.json
+
+      - name: Duplicate zigbee2mqtt to zigbee2mqtt_mi_1 .. zigbee2mqtt_mi_5
+        run: |
+          for i in {1..5}
+          do
+            PORT=$((8485 + $i))
+            NAME="Zigbee2MQTT Multi-Instance N°"$i
+            SLUG="zigbee2mqtt_mi_"$i
+            URL="https://github.com/lebretr/hassio-zigbee2mqtt_1/tree/master/""$SLUG"
+            DATA_PATH="/config/""$SLUG"
+
+            echo "$i - $PORT - $NAME - $SLUG - $DATA_PATH"
+
+            rm -r -f "$SLUG"
+            cp -r zigbee2mqtt "$SLUG"
+            jq --arg NAME_jq "$NAME" \
+              --arg SLUG_jq "$SLUG" \
+              --arg URL_jq "$URL" \
+              --arg DATA_PATH_jq "$DATA_PATH" \
+              --arg PORT_jq "$PORT" \
+              '.name = $NAME_jq | .slug = $SLUG_jq | .url = $URL_jq | .options.data_path = $DATA_PATH_jq | .options.mqtt= { base_topic :  $SLUG_jq } | .ports."8485/tcp" = $PORT_jq ' \
+              "$SLUG"/config.json > "$SLUG"/config.json.tmp
+            mv "$SLUG"/config.json.tmp "$SLUG"/config.json
+            cp "mi_ressources"/"zigbee2mqtt"/"icon_"$i".png" "$SLUG"/icon.png
+            cp "mi_ressources"/"zigbee2mqtt"/"logo_"$i".png" "$SLUG"/logo.png
+          done
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Sync all the duplicated repos"
+
