@@ -15,7 +15,7 @@
             <img src="https://img.shields.io/github/stars/lebretr/hassio-zigbee2mqtt-mi.svg">
         </a>
     </div>
-    <h1>Zigbee2MQTT Multi-Instace Home Assistant addon base on the Official Zigbee2MQTT addon </h1>
+    <h1>Zigbee2MQTT Multi-Instance Home Assistant addon base on the Official Zigbee2MQTT addon </h1>
 </div>
 
 
