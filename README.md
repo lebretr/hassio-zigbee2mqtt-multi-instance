@@ -22,7 +22,7 @@
 ## IMPORTANT
 This repositiry is a fork of `https://github.com/zigbee2mqtt/hassio-zigbee2mqtt`
 
-The only difference with the official `zigbee2mqtt/hassio-zigbee2mqtt` is that you can deploy several instances of zigbee2mqtt when you want use several zigbee adapter with your home assistant
+The only difference with the official `zigbee2mqtt/hassio-zigbee2mqtt` is that you can deploy several instances of zigbee2mqtt when you want use several zigbee adapters with your home assistant
 
 My work was only to duplicate the `zigbee2mqtt` directory and change some values in the config file in each duplicated directory.
 
