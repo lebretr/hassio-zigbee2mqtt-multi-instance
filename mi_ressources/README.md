@@ -18,6 +18,8 @@
     <h1>Zigbee2MQTT Multi-Instance Home Assistant add-on based on the Official Zigbee2MQTT add-on </h1>
 </div>
 
+> [!CAUTION]
+> If you're using a Raspberry Pi, ensure you have at least a Raspberry Pi 4, as running it on a Raspberry Pi 3 may cause instability due to its limited resources.
 
 ## IMPORTANT
 This repositiry is a fork of `https://github.com/zigbee2mqtt/hassio-zigbee2mqtt`
