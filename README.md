@@ -21,8 +21,6 @@
 > [!CAUTION]
 > If you're using a Raspberry Pi, ensure you have at least a Raspberry Pi 4, as running it on a Raspberry Pi 3 may cause instability due to its limited resources.
 
-## Installation
-
 ## IMPORTANT
 This repositiry is a fork of `https://github.com/zigbee2mqtt/hassio-zigbee2mqtt`
 
