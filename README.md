@@ -14,6 +14,9 @@
         <a href="https://github.com/lebretr/hassio-zigbee2mqtt-multi-intance/stargazers">
             <img src="https://img.shields.io/github/stars/lebretr/hassio-zigbee2mqtt-multi-intance.svg">
         </a>
+        <a href="https://discord.gg/dadfWYE">
+            <img src="https://img.shields.io/discord/556563650429583360.svg">
+        </a>
     </div>
     <h1>Zigbee2MQTT Multi-Instance Home Assistant add-on based on the Official Zigbee2MQTT add-on </h1>
 </div>
@@ -36,6 +39,20 @@ My work was only to duplicate the `zigbee2mqtt` directory and change some values
 1. The repository includes:
    - **Zigbee2MQTT** is the official stable release that tracks the released versions of Zigbee2MQTT. (**recommended for most users**)
    - **Zigbee2MQTT Edge** tracks the `dev` branch of Zigbee2MQTT such that you can install the edge version if there are features or fixes in the Zigbee2MQTT dev branch that are not yet released.
-   - **Zigbee2MQTT Multi-instance N°x** is a duplicated stable release that tracks the released versions of Zigbee2MQTT. Use this if you want to use a second (or more) zigbee coordinator adaptater
+1. Click on the add-on and press **Install** and wait till the add-on is installed.
+1. Start the add-on by going to **Info** and click **Start**
+1. Wait a few seconds and press **OPEN WEB UI**, you will now see the onboarding page. More information about the onboarding can be found [here](https://www.zigbee2mqtt.io/guide/getting-started/#onboarding).
+1. Fill in the desired settings, for most setups changing the following is enough:
+   - Select your adapter under _Found Devices_, this will configure the _Coordinator/Adapter Port/Path_ and _Coordinator/Adapter Type/Stack/Driver_.
+   - Fill in the _Closests WiFi Channel_ to select the most optimal Zigbee channel.
+1. Press **Submit**, Zigbee2MQTT will now start, wait a few seconds and refresh the page. You should now see the Zigbee2MQTT frontend.
+   - If it shows `502: Bad Gateway` wait a bit more and refresh the page.
+   - If this takes too long (e.g. 2 minutes +) check the **Log** tab to see what went wrong.
+   - In case the add-on fails to start with the following error: `USB adapter discovery error (No valid USB adapter found). Specify valid 'adapter' and 'port' in your configuration.`, we need to fill in the `serial` section. Format can be found [here](https://www.zigbee2mqtt.io/guide/configuration/adapter-settings.html#adapter-settings), but skip the initial `serial:` indent. e.g.: <br>
+     ```yaml
+     adapter: zstack
+     port: /dev/serial/by-id/usb-Texas_Instruments_TI_CC2531_USB_CDC___0X00124B0018ED3DDF-if00
+     ```
+     If you don't know the port and you have just one USB device connected to your machine try `/dev/ttyUSB0` or `/dev/ttyAMA0`. Else use the [Home Assistant CLI](https://www.home-assistant.io/common-tasks/os#home-assistant-via-the-command-line) and execute `ha hardware info` to find out.
 
 For configuration, refer to [the documentation of the official add-on](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt)
