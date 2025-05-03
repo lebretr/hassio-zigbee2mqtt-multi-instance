@@ -1,6 +1,6 @@
 {
     "name": "Home Assistant Add-on: Zigbee2MQTT Multi-Instance",
-    "url": "https://github.com/lebretr/hassio-zigbee2mqtt-multi-instance",
+    "url": "https://github.com/lebretr/hassio-zigbee2mqtt-multi-intance",
     "maintainer": "Remi Lebret <7931261+lebretr@users.noreply.github.com>"
   }
   
