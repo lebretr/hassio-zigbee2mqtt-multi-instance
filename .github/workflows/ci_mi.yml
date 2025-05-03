@@ -43,7 +43,7 @@ jobs:
             PORT=$((8485 + $i))
             NAME="Zigbee2MQTT Multi-Instance N°"$i
             SLUG="zigbee2mqtt_mi_"$i
-            URL="https://github.com/lebretr/hassio-zigbee2mqtt-multi-intance/tree/master/""$SLUG"
+            URL="https://github.com/lebretr/hassio-zigbee2mqtt-multi-instance/tree/master/""$SLUG"
             DATA_PATH="/config/""$SLUG"
 
             echo "$i - $PORT - $NAME - $SLUG - $DATA_PATH"
