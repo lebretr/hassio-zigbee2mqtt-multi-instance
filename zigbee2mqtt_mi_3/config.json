@@ -8,7 +8,7 @@
   ],
   "uart": true,
   "udev": true,
-  "url": "https://github.com/lebretr/hassio-zigbee2mqtt-multi-intance/tree/master/zigbee2mqtt_mi_3",
+  "url": "https://github.com/lebretr/hassio-zigbee2mqtt-multi-instance/tree/master/zigbee2mqtt_mi_3",
   "startup": "application",
   "services": [
     "mqtt:need"
